@@ -17,34 +17,39 @@ app.use(express.json());
 
 let reservations = [
   {
-    routeName: "Table One",
-    resName: "",
-    resTime: "",
-    partySize,
+    routeName: "Table #1",
+    ID: "1234",
+    Name: "Tester McTesterson",
+    Email: "test1@email.com",
+    Phone: "8015555555"
   },
   {
-    routeName: "Table Two",
-    resName: "",
-    resTime: "",
-    partySize,
+    routeName: "Table #2",
+    ID: "1234",
+    Name: "J. McTesterson",
+    Email: "test2@email.com",
+    Phone: "8015555555"
   },
   {
-    routeName: "Table Three",
-    resName: "",
-    resTime: "",
-    partySize,
+    routeName: "Table #3",
+    ID: "1234",
+    Name: "John McTesterson",
+    Email: "test3@email.com",
+    Phone: "8015555555"
   },
   {
-    routeName: "Table Four",
-    resName: "",
-    resTime: "",
-    partySize,
+    routeName: "Table #4",
+    ID: "1234",
+    Name: "Jane McTesterson",
+    Email: "test4@email.com",
+    Phone: "8015555555"
   },
   {
-    routeName: "Table Five",
-    resName: "",
-    resTime: "",
-    partySize,
+    routeName: "Table #5",
+    ID: "1234",
+    Name: "Jim McTesterson",
+    Email: "test5@email.com",
+    Phone: "8015555555"
   },
 ];
 
@@ -53,6 +58,10 @@ let reservations = [
 
 // Basic route that sends the user first to the AJAX Page
 app.get("/", function(req, res) {
+  res.sendFile(path.join(__dirname, "index.html"));
+});
+
+app.get("/index", function(req, res) {
   res.sendFile(path.join(__dirname, "index.html"));
 });
 
@@ -66,21 +75,21 @@ app.get("/tables", function(req, res) {
 
 
 // Displays all reservations
-// app.get("/api/reservations", function(req, res) {
-app.get("/reservations", function(req, res) {
+app.get("/api/reservations", function(req, res) {
+// app.get("/reservations", function(req, res) {
   return res.json(reservations);
 });
 
 // Displays all tables
-// app.get("/api/tables", function(req, res) {
-app.get("/tables", function(req, res) {
+app.get("/api/tables", function(req, res) {
+// app.get("/tables", function(req, res) {
   return res.json(tables);
 });
 
 
 // Displays a single reservation, or returns false
-// app.get("/api/reservations/:reservations", function(req, res) {
-app.get("/reservations/:reservations", function(req, res) {
+app.get("/api/reservations/:reservations", function(req, res) {
+// app.get("/reservations/:reservations", function(req, res) {
   var resDetails = req.params.reservations;
 
   console.log(resDetails);
@@ -95,8 +104,8 @@ app.get("/reservations/:reservations", function(req, res) {
 });
 
 // Create New reservations - takes in JSON input
-// app.post("/api/reservations", function(req, res) {
-app.post("/reservations", function(req, res) {
+app.post("/api/reservations", function(req, res) {
+// app.post("/reservations", function(req, res) {
   // req.body hosts is equal to the JSON post sent from the user
   // This works because of our body parsing middleware
   var newReservation = req.body;
@@ -114,3 +123,6 @@ app.post("/reservations", function(req, res) {
 
 // Starts the server to begin listening
 // =============================================================
+app.listen(PORT, function() {
+  console.log("App listening on PORT " + PORT);
+});
